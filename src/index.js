@@ -13,7 +13,7 @@ const App = () => {
     <Link>MyRoutines</Link>
     <Link>Routines</Link>
     <Link>Login</Link>
-    <Link>Registerr</Link>
+    <Link>Registerrrr</Link>
     </nav>
     </header>
   </div>
