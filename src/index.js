@@ -5,18 +5,26 @@ import { BrowserRouter, Link } from "react-router-dom";
 const App = () => {
   return (
   <div className='bruh2'>
-    <header>
+    <header className='mainHeader'>
+      <h3>Fitness Tracker</h3>
       <nav  className='headerLinks'>
-        <a>bUR</a>
     <Link>Home</Link>
-    <Link>Activies</Link>
+    
+    <Link>Activities</Link>
+    
     <Link>MyRoutines</Link>
+    
     <Link>Routines</Link>
+    
     <Link>Login</Link>
-    <Link>Registerrrr</Link>
+    
+    <Link>Register</Link>
     </nav>
     </header>
   </div>
+
+
+
   )
 }
 
