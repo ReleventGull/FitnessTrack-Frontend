@@ -1,30 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Link } from "react-router-dom";
-
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import {Header, Register} from './components/index'
 const App = () => {
   return (
-  <div className='bruh2'>
-    <header className='mainHeader'>
-      <h3>Fitness Tracker</h3>
-      <nav  className='headerLinks'>
-    <Link>Home</Link>
     
-    <Link>Activities</Link>
+    <main>
+    <Header />
     
-    <Link>MyRoutines</Link>
+    <Switch>
+    <Route exact path='/register'>
+    <Register/>
+    </Route>
+    </Switch>
+    </main>
     
-    <Link>Routines</Link>
-    
-    <Link>Login</Link>
-    
-    <Link>Register</Link>
-    </nav>
-    </header>
-  </div>
-
-
-
   )
 }
 
@@ -32,8 +22,8 @@ const App = () => {
 const root = ReactDOM.createRoot(document.getElementById('app'))
 
 root.render(
-  <BrowserRouter>
-  <App />
-  </BrowserRouter>
+  <Router>
+    <App />
+  </Router>
 
 );
