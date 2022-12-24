@@ -1,6 +1,4 @@
-import Home from './Home';
-import Activies from './Activies';
-import MyRoutines from './MyRoutines';
-import Routines from './Routines';
-
-export { Home, Activies, MyRoutines, Routines };
+import {default as Home} from './Home';
+import {default as Activies} from './Activies';
+import {default as MyRoutines} from './MyRoutines';
+import {default as Routines} from './Routines';
