@@ -50,3 +50,5 @@ export const getAllActivities = async() => {
     }
 }
 
+
+
