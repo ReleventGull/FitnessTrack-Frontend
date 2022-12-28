@@ -1,16 +1,19 @@
 import React, {useState} from 'react'
+import { useHistory } from 'react-router-dom'
 import { registerUser } from '../api/api'
 
 
 
-const Register = () => {
+const Register = ({setToken}) => {
 const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
 const [password2, setPassword2] = useState('')
 const [errorMessage, setErrorMessage] = useState('')
-console.log(errorMessage)
+
+const history = useHistory()
+
+
 const handleSubmit = async (event) => {
-console.log("I was")
 event.preventDefault()
 console.log(password.length)
 if (password !== password2) {
@@ -22,7 +25,9 @@ setPassword2('')
    const result = await registerUser({username: username, password: password})
    console.log(result)
    if(!result.error) {
-      console.log(result.token)
+      setToken(result.token)
+      localStorage.setItem('token', result.token)
+      history.push('/activities')
    }else {
       setErrorMessage(result.message)
    }

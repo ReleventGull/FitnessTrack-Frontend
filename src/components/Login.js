@@ -1,13 +1,17 @@
 import React, {useState} from 'react'
+import { useHistory } from 'react-router-dom'
 import { loginUser } from '../api/api'
 
 
 
 
-const Login = () => {
+const Login = ({setToken}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+
+    const history = useHistory()
+
     const handleSubmit = async(event) => {
         event.preventDefault()
         const result = await loginUser({username: username, password: password})
@@ -17,7 +21,9 @@ const Login = () => {
             setUsername('')
             setPassword('')
         }else {
-            console.log(result.token)
+            setToken(result.token)
+            localStorage.setItem('token', result.token)
+            history.push('/activities')
         }
     }
 
