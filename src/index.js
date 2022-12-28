@@ -5,7 +5,7 @@ import {Header, Register, Login, Activities, Routines} from './components/index'
 const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '')
 
-  
+
   
   return (
     <main>
