@@ -1,10 +1,15 @@
-import react from "react";
-import {Link} from 'react-router-dom'
+import React from "react";
+import {Link, useHistory} from 'react-router-dom'
+
+const Header =  ({setToken, token}) => {
+    const history = useHistory()
+    
+    const handleLogout = () => {
+    setToken('')
+    history.push('/')
+    }
 
 
-
-
-const Header =  () => {
     return (
     <div className='bruh2'>
     <header className='mainHeader'>
@@ -14,11 +19,19 @@ const Header =  () => {
     
     <Link to='Routines'>Routines</Link>
     
+    {!token ?
+    <>
     <Link to='login'>Login</Link>
-    
-    <Link to='register'>Register</Link>
-
+    <Link to='register'>Register</Link> 
+    </>
+    :<>
     <Link>MyRoutines</Link>
+    <button onClick={handleLogout} className="logoutButton">Logout</button>
+    </>
+    }
+    
+   
+    
     </nav>
     </header>
     </div>

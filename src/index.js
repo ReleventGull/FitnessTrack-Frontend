@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import {Header, Register, Login, Activities, Routines} from './components/index'
 const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '')
@@ -9,7 +9,7 @@ const [token, setToken]= useState(localStorage.getItem('token') || '')
   
   return (
     <main>
-    <Header />
+    <Header setToken={setToken} token={token}/>
     
     
     <Route exact path='/activities'>
@@ -21,11 +21,11 @@ const [token, setToken]= useState(localStorage.getItem('token') || '')
     </Route>
      
     <Route exact path='/register'>
-    <Register/>
+    <Register setToken={setToken}/>
     </Route>
 
     <Route exact path='/login'>
-    <Login />
+    <Login setToken={setToken}/>
     </Route>
 
 
