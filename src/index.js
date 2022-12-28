@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-import { getAllActivities } from './api/api';
+import { getAllActivities, getAllRoutines } from './api/api';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Header, Register, Login, Activities, Routines } from './components/index'
 
 const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '');
 const [activities, setActivities] = useState([]);
+const [routines, setRoutines] = useState([]);
+
+useEffect(() => {
+  const getRoutines = async () => {
+    const routinesFromAPI = await getAllRoutines();
+    setRoutines(routinesFromAPI);
+  }
+  getRoutines();
+}, []);
+
 
 useEffect(() => {
   const getActivities = async () => {
@@ -26,7 +36,7 @@ useEffect(() => {
     </Route>
 
     <Route exact path='/Routines'>
-    <Routines />
+    <Routines routines={routines}/>
     </Route>
      
     <Route exact path='/register'>
