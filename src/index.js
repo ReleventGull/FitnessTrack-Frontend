@@ -8,11 +8,14 @@ const App = () => {
     <main>
     <Header />
     
-    <Switch>
+    
+    
+
     <Route exact path='/register'>
     <Register/>
     </Route>
-    </Switch>
+    
+ 
     </main>
     
   )
