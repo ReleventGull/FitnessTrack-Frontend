@@ -8,9 +8,6 @@ const App = () => {
     <main>
     <Header />
     
-    
-    
-
     <Route exact path='/register'>
     <Register/>
     </Route>
