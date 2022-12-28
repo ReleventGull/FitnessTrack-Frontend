@@ -1,4 +1,6 @@
-import {default as Home} from './Home';
-import {default as Activies} from './Activies';
-import {default as MyRoutines} from './MyRoutines';
-import {default as Routines} from './Routines';
+export {default as Home} from './Home';
+
+export {default as MyRoutines} from './MyRoutines';
+export {default as Routines} from './Routines';
+export {default as Register} from './Register'
+export {default as Header} from './Header'
