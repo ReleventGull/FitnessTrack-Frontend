@@ -1,8 +1,9 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { getAllActivities } from './api/api';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import {Header, Register, Login, Activities, Routines} from './components/index'
+import { Header, Register, Login, Activities, Routines } from './components/index'
+
 const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '');
 const [activities, setActivities] = useState([]);
@@ -17,7 +18,7 @@ useEffect(() => {
 
   return (
     <main>
-    <Header />
+    <Header setToken={setToken} token={token}/>
     
     
     <Route exact path='/activities'>
@@ -29,11 +30,11 @@ useEffect(() => {
     </Route>
      
     <Route exact path='/register'>
-    <Register/>
+    <Register setToken={setToken}/>
     </Route>
 
     <Route exact path='/login'>
-    <Login />
+    <Login setToken={setToken}/>
     </Route>
 
 
