@@ -14,15 +14,12 @@ const handleSubmit = (event) => {
    console.log(errorMessage)
 event.preventDefault()
 console.log(password.length)
-if(password.length === 0 || password2.length === 0 || username.length === 0) {
-   setErrorMessage('Please fill out all the fields')
-}else if (password !== password2) {
+if (password !== password2) {
 setErrorMessage("Passwords do not match.")
 setUsername('')
 setPassword('')
 setPassword2('')
 }
-
 }
 
 
@@ -36,24 +33,26 @@ return (
     onChange={(event) => 
     setUsername(event.target.value)}
     type='Username'
+    required
     >
-   
     </input>
     
-    <h2>Passowrd</h2>
+    <h2>Password</h2>
     <input 
     value={password}
     onChange={(event) => setPassword(event.target.value)} 
     type='Password'
+    required
     >
     </input>
     
-    <h2>Confirm Passowrd</h2>
+    <h2>Confirm Password</h2>
     
     <input 
     value={password2} 
     onChange={(event) => setPassword2(event.target.value)} 
     type='Password'
+    required
     >
     </input>
     

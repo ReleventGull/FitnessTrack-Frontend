@@ -18,7 +18,7 @@ const Header =  () => {
     
     <Link>Routines</Link>
     
-    <Link>Login</Link>
+    <Link to='login'>Login</Link>
     
     <Link to='register'>Register</Link>
     </nav>

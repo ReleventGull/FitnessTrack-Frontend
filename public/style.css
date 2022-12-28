@@ -41,7 +41,6 @@ body{
     flex-direction: column;
     align-items: center;
     height: 600px;
-   
 }
 
 .registerForm {
@@ -64,4 +63,33 @@ body{
 
 .registerError {
     color: red
+}
+
+
+/*********** LOGIN CONTAINER *****************/
+.loginContainer {
+    background-color: wheat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 600px;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.loginForm button {
+    width: 300px;
+    height: 40px;
+    margin-top: 30px;
+    align-self: center;
+}
+
+.loginForm input {
+    width: 300px;
+    height: 22px;
 }
