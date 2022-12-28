@@ -1,6 +1,5 @@
-
 import React, {useState} from 'react'
-
+import { registerUser } from '../api/api'
 
 
 
@@ -9,9 +8,9 @@ const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
 const [password2, setPassword2] = useState('')
 const [errorMessage, setErrorMessage] = useState('')
-
-const handleSubmit = (event) => {
-   console.log(errorMessage)
+console.log(errorMessage)
+const handleSubmit = async (event) => {
+console.log("I was")
 event.preventDefault()
 console.log(password.length)
 if (password !== password2) {
@@ -19,7 +18,15 @@ setErrorMessage("Passwords do not match.")
 setUsername('')
 setPassword('')
 setPassword2('')
-}
+}else {
+   const result = await registerUser({username: username, password: password})
+   console.log(result)
+   if(!result.error) {
+      console.log(result.token)
+   }else {
+      setErrorMessage(result.message)
+   }
+  }
 }
 
 

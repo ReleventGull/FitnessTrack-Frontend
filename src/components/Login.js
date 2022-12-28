@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-
+import { loginUser } from '../api/api'
 
 
 
@@ -8,13 +8,18 @@ const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
-    
     const handleSubmit = async(event) => {
         event.preventDefault()
-        console.log(username, password)
+        const result = await loginUser({username: username, password: password})
+        console.log(result)
+        if(result.error) {
+            setErrorMessage(result.message)
+            setUsername('')
+            setPassword('')
+        }else {
+            console.log(result.token)
+        }
     }
-
-
 
     return (
         <div className='loginContainer'>
@@ -42,6 +47,7 @@ const Login = () => {
 
             <button type='submit'>Submit</button>
             </form>
+            <h4 className='registerError'>{errorMessage}</h4>
         </div>
     )
 }
