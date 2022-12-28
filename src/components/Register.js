@@ -1,6 +1,5 @@
-
 import React, {useState} from 'react'
-
+import { registerUser } from '../api/api'
 
 
 
@@ -9,20 +8,25 @@ const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
 const [password2, setPassword2] = useState('')
 const [errorMessage, setErrorMessage] = useState('')
-
-const handleSubmit = (event) => {
-   console.log(errorMessage)
+console.log(errorMessage)
+const handleSubmit = async (event) => {
+console.log("I was")
 event.preventDefault()
 console.log(password.length)
-if(password.length === 0 || password2.length === 0 || username.length === 0) {
-   setErrorMessage('Please fill out all the fields')
-}else if (password !== password2) {
+if (password !== password2) {
 setErrorMessage("Passwords do not match.")
 setUsername('')
 setPassword('')
 setPassword2('')
-}
-
+}else {
+   const result = await registerUser({username: username, password: password})
+   console.log(result)
+   if(!result.error) {
+      console.log(result.token)
+   }else {
+      setErrorMessage(result.message)
+   }
+  }
 }
 
 
@@ -36,24 +40,26 @@ return (
     onChange={(event) => 
     setUsername(event.target.value)}
     type='Username'
+    required
     >
-   
     </input>
     
-    <h2>Passowrd</h2>
+    <h2>Password</h2>
     <input 
     value={password}
     onChange={(event) => setPassword(event.target.value)} 
     type='Password'
+    required
     >
     </input>
     
-    <h2>Confirm Passowrd</h2>
+    <h2>Confirm Password</h2>
     
     <input 
     value={password2} 
     onChange={(event) => setPassword2(event.target.value)} 
     type='Password'
+    required
     >
     </input>
     

@@ -1,6 +1,6 @@
 const BASEURL = "https://fitnesstrac-kr.herokuapp.com/api";
 
-const registerUser = async({username, password}) => {
+export const registerUser = async({username, password}) => {
     try {
         const response = await fetch(`${BASEURL}/users/register`, {
           method: "POST",
@@ -21,7 +21,7 @@ const registerUser = async({username, password}) => {
 
 
 
-const loginUser = async({username, password}) => {
+export const loginUser = async({username, password}) => {
     try {
         const response = await fetch(`${BASEURL}/users/login`, {
             method: "POST",
@@ -40,7 +40,7 @@ const loginUser = async({username, password}) => {
     }
 }
 
-const getAllActivities = async() => {
+export const getAllActivities = async() => {
     try {
         const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/activities`)
         const result = await response.json()
