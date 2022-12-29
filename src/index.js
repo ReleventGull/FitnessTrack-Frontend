@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { getAllActivities, getAllRoutines } from './api/api';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Header, Register, Login, Activities, Routines } from './components/index'
+import { Header, Register, Login, Activities, Routines, CreateActivity } from './components/index'
 
 const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '');
@@ -30,9 +30,12 @@ useEffect(() => {
     <main>
     <Header setToken={setToken} token={token}/>
     
-    
+    <Route exact path='/activities/create'>
+      <CreateActivity token={token}/>
+    </Route>
+
     <Route exact path='/activities'>
-    <Activities activities={activities}/>
+    <Activities token={token} activities={activities}/>
     </Route>
 
     <Route exact path='/Routines'>
@@ -46,6 +49,8 @@ useEffect(() => {
     <Route exact path='/login'>
     <Login setToken={setToken}/>
     </Route>
+
+   
 
 
     </main>
