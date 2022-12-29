@@ -1,7 +1,11 @@
 import React from "react";
+import { Link, useHistory} from "react-router-dom";
 
-const Activities = ({ activities }) => {
+
+const Activities = ({ activities, token }) => {
     return (
+    <div className='activitiesPage'>
+        {token ? <Link to='/activities/create'className="createActivity">Create Activity</Link>: null}
         <div className="activities-container">
             {activities.map((activity) => {
                 return (
@@ -14,6 +18,7 @@ const Activities = ({ activities }) => {
                 );
             })}
         </div>
+     </div>
     );
 }
 

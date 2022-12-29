@@ -134,3 +134,62 @@ body{
 .activity-card > * {
     margin: 10px;
 }
+
+.activitiesPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createActivity {
+    transition: .1s;
+   font-size: 2em;
+   margin-top: 20px;
+   text-decoration: none;
+    color: black;
+}
+.createActivity:hover {
+    transition: .1s;
+    color: wheat;
+}
+
+
+
+
+/**********************CREATE ACITIVTY ***********************/
+.createActivityContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formCreateActivity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 550px;
+    height: 550px;
+    background-color: lightgray;
+    
+}
+
+.nameActivity {
+    width:300px
+}
+
+.descriptionActivity {
+    min-height: 200px;
+    max-height: 200px;
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.submitActivity{
+    width: 200px;
+    height: 50px;
+    margin-top: 30px;
+}
+
+
+
+

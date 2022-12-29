@@ -6,6 +6,7 @@ const Header =  ({setToken, token}) => {
     
     const handleLogout = () => {
     setToken('')
+    localStorage.removeItem('token')
     history.push('/')
     }
 

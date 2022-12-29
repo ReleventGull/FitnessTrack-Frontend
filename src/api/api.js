@@ -44,6 +44,7 @@ export const getAllActivities = async() => {
     try {
         const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/activities`)
         const result = await response.json()
+        console.log("results from activities", result)
         return result
     }catch(error) {
         console.error(error)
@@ -59,4 +60,26 @@ export const getAllRoutines = async() => {
     }catch(error) {
         console.error(error)
     }
+}
+
+export const createActivity = async({token, name, description}) => {
+try {
+    console.log("Data here", name, description, token)
+const response = await fetch(`${BASEURL}/activities`, {
+    method: "POST",
+    headers: {
+        Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      name:name,
+      description:description
+    })
+
+})
+const result = await response.json()
+console.log(result)
+return result
+}catch(error) {
+    console.error(error)
+}
 }

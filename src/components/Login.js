@@ -23,7 +23,7 @@ const Login = ({setToken}) => {
         }else {
             setToken(result.token)
             localStorage.setItem('token', result.token)
-            history.push('/activities')
+            history.push('/')
         }
     }
 
