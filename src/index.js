@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-import { getAllActivities, getAllRoutines } from './api/api';
+import { getAllActivities, getAllRoutines, getUser } from './api/api';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Header, Register, Login, Activities, Routines, CreateActivity } from './components/index'
 
@@ -8,6 +8,7 @@ const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '');
 const [activities, setActivities] = useState([]);
 const [routines, setRoutines] = useState([]);
+const [userData, setUserData] = useState([]);
 const [sumbit, setSubmit] = useState(false)
 
 useEffect(() => {
@@ -28,6 +29,17 @@ useEffect(() => {
   };
   getActivities();
 }, [sumbit]);
+
+
+useEffect(() => {
+  const getAllUsers = async () => {
+    const usersFromAPI = await getUser(token);
+    setUserData(usersFromAPI);
+  }
+  if (token) {
+    getAllUsers()
+  } else {null}
+}, [token])
 
   return (
     <main>
