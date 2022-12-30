@@ -83,3 +83,23 @@ return result
     console.error(error)
 }
 }
+
+const createRoutine = async({token, name, goal}) => {
+    try{
+        const response = await fetch(`${BASEURL}/routines`, {
+            method: "POST",
+            headers: {
+                'Content-type': 'Application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name: name,
+                goal: goal
+            })
+        })
+        const result = await response.json()
+        return result
+    }catch(error) {
+        console.error(error)
+    }
+}
