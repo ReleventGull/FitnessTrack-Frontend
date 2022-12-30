@@ -9,7 +9,7 @@ const Activities = ({ activities, token }) => {
         <div className="activities-container">
             {activities.map((activity) => {
                 return (
-                    <div className="activity-card" key={activity.id}>
+                    <div onClick={() => console.log(activity.id)}className="activity-card" key={activity.id}>
                             <h2>Activity</h2>
                             <p>{activity.name}</p>
                             <h2>Description</h2>
