@@ -62,6 +62,17 @@ export const getAllRoutines = async() => {
     }
 }
 
+const getUser = async() => {
+    try {
+        const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/users/me`)
+        const result = await response.json()
+        console.log("results from users", result)
+        return result
+    }catch(error) {
+        console.error(error)
+    }
+}
+
 export const createActivity = async({token, name, description}) => {
 try {
   
@@ -103,3 +114,4 @@ const createRoutine = async({token, name, goal}) => {
         console.error(error)
     }
 }
+
