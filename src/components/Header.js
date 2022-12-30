@@ -18,7 +18,7 @@ const Header =  ({setToken, token}) => {
     <nav  className='headerLinks'>
     <Link to='/activities'>Activities</Link>
     
-    <Link to='/Routines'>Routines</Link>
+    <Link to='/routines'>Routines</Link>
     
     {!token ?
     <>

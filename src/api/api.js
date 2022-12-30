@@ -55,7 +55,7 @@ export const getAllRoutines = async() => {
     try {
         const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/routines`)
         const result = await response.json()
-        console.log("nah", result)
+        console.log("Routines", result)
         return result
     }catch(error) {
         console.error(error)
