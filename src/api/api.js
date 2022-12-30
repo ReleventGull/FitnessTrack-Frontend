@@ -64,20 +64,20 @@ export const getAllRoutines = async() => {
 
 export const createActivity = async({token, name, description}) => {
 try {
-    console.log("Data here", name, description, token)
+  
 const response = await fetch(`${BASEURL}/activities`, {
     method: "POST",
     headers: {
-        Authorization: `Bearer ${token}`
+        'Content-type': 'Application/json',
+        'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({
-      name:name,
-      description:description
+      name: name,
+      description: description
     })
 
 })
 const result = await response.json()
-console.log(result)
 return result
 }catch(error) {
     console.error(error)

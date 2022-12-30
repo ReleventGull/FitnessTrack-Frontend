@@ -8,45 +8,51 @@ const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '');
 const [activities, setActivities] = useState([]);
 const [routines, setRoutines] = useState([]);
+const [sumbit, setSubmit] = useState(false)
 
 useEffect(() => {
   const getRoutines = async () => {
     const routinesFromAPI = await getAllRoutines();
     setRoutines(routinesFromAPI);
+    setSubmit(false)
   }
   getRoutines();
-}, []);
+}, [sumbit]);
 
 
 useEffect(() => {
   const getActivities = async () => {
     const activitiesFromAPI = await getAllActivities();
     setActivities(activitiesFromAPI);
+    setSubmit(false)
   };
   getActivities();
-}, []);
+}, [sumbit]);
 
   return (
     <main>
     <Header setToken={setToken} token={token}/>
     
-    <Route exact path='/activities/create'>
-      <CreateActivity token={token}/>
+    <Route path='/activities/create'>
+      <CreateActivity setSubmit={setSubmit} token={token}/>
     </Route>
 
     <Route exact path='/activities'>
     <Activities token={token} activities={activities}/>
     </Route>
 
-    <Route exact path='/Routines'>
+    
+    
+
+    <Route  path='/Routines'>
     <Routines routines={routines}/>
     </Route>
      
-    <Route exact path='/register'>
+    <Route  path='/register'>
     <Register setToken={setToken}/>
     </Route>
 
-    <Route exact path='/login'>
+    <Route  path='/login'>
     <Login setToken={setToken}/>
     </Route>
 

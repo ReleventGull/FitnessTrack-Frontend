@@ -5,10 +5,10 @@ import {createActivity} from '../api/api'
 
 
 
-const CreateActivity = ({token}) => { 
+const CreateActivity = ({token, setSubmit}) => { 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
-
+    const [errorMessage, setErrorMessage] = useState('')
     const history = useHistory()
     
     useEffect(() => {
@@ -16,13 +16,21 @@ const CreateActivity = ({token}) => {
     })
     
     
-    const handleSubmit = (event) =>  {
+    const handleSubmit = async(event) =>  {
         event.preventDefault()
-        const result = createActivity({
+        const result = await createActivity({
             token: token, 
             name: name, 
             description: description})
-       
+        if(result.error) {
+            setErrorMessage(result.message)
+            console.log(errorMessage)
+        }else {
+            setSubmit(true)
+            setErrorMessage('')
+            history.push('/activities')
+        }
+           
     }
     
     return (
@@ -49,6 +57,7 @@ const CreateActivity = ({token}) => {
           
           <button type='submit' className="submitActivity">Submit Activity</button>
         </form>
+        <h2>{errorMessage}</h2>
     </div>
     )
 }

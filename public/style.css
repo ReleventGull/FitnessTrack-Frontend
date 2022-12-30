@@ -11,7 +11,6 @@ body{
     justify-content: space-around;
     align-items: center;
     font-size: 1.7em;
-
 }
 
 
@@ -133,6 +132,22 @@ body{
 
 .activity-card > * {
     margin: 10px;
+    transition: .4s;
+}
+.activity-card  {
+    transition: .4s;
+}
+
+.activity-card:hover  {
+    transform: scale(1.1);
+    transition: .4s;
+    
+}
+
+.activity-card h2 {
+  text-align: center;
+  border-bottom: 2px solid black;
+  width: 80%;  
 }
 
 .activitiesPage {
@@ -159,6 +174,7 @@ body{
 /**********************CREATE ACITIVTY ***********************/
 .createActivityContainer {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }

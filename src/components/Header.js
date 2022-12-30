@@ -16,14 +16,14 @@ const Header =  ({setToken, token}) => {
     <header className='mainHeader'>
     <h3>Fitness Tracker</h3>
     <nav  className='headerLinks'>
-    <Link to='activities'>Activities</Link>
+    <Link to='/activities'>Activities</Link>
     
-    <Link to='Routines'>Routines</Link>
+    <Link to='/Routines'>Routines</Link>
     
     {!token ?
     <>
-    <Link to='login'>Login</Link>
-    <Link to='register'>Register</Link> 
+    <Link to='/login'>Login</Link>
+    <Link to='/register'>Register</Link> 
     </>
     :<>
     <Link>MyRoutines</Link>
