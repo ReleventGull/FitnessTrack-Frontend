@@ -1,32 +1,22 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 
-const Routines = ({ routines }) => {
+const Routines = ({ routines, token }) => {
     return (
-        <div className='routinescontainer'>
-            <h1>Routines</h1>
+    <div className='routinesPage'>
+        {token ? <Link to='/routines/create' className="createActivity">Create Routine</Link>: null}
+        <div className='routinesContainer'>
             {routines.map((routine) => {
                 return(
-                    
-                    <div className=''>
-                        
-                            <div>
-                            <h2 className='routinecreater'>{routine.creatorName}'s routine: {routine.name}</h2>
-                                <p className='goaltitle'>Goal</p>
-                                <p className='goal'>{routine.goal}</p>
-                                <p className='activitytitle'>Activities</p>
-                                <p>activity name</p>
-                                <p>description</p>
-                                <p>duration or count</p>
-                            </div>
-
+                    <div key={routine.id} className='routineCard'>
+                            <h2 className='routineHeader'>{routine.creatorName}'s routine: {routine.name}</h2>
+                                <h3 className='goal'>{routine.goal}</h3>         
                     </div>
-
-                    
                 )
             }) }
-          
         </div>
+    </div>
     )
 
 }

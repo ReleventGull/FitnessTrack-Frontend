@@ -43,9 +43,12 @@ useEffect(() => {
 
     
     
-
-    <Route  path='/Routines'>
-    <Routines routines={routines}/>
+    <Route path='/routines/create'>
+     <div>BRUH</div>
+    </Route>
+    
+    <Route exact path='/routines'>
+    <Routines token={token} routines={routines}/>
     </Route>
      
     <Route  path='/register'>
