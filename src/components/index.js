@@ -7,4 +7,6 @@ export {default as Header} from './Header'
 export {default as Login} from './Login'
 export {default as Activities} from './Activities'
 export {default as CreateActivity} from './CreateActivity'
+export {default as ActivityItem} from './ActivityItem'
 export {default as CreateRoutine} from './CreateRoutine'
+
