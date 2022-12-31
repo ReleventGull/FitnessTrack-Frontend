@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { getAllActivities, getAllRoutines } from './api/api';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Header, Register, Login, Activities, Routines, CreateActivity } from './components/index'
+import { Header, Register, Login, Activities, Routines, CreateActivity, CreateRoutine } from './components/index'
 
 const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '');
@@ -44,7 +44,7 @@ useEffect(() => {
     
     
     <Route path='/routines/create'>
-     <div>BRUH</div>
+     <CreateRoutine setSubmit={setSubmit} token={token}/>
     </Route>
     
     <Route exact path='/routines'>
