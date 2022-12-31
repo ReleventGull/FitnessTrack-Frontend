@@ -145,6 +145,14 @@ body{
     border-bottom: 2px solid white;
     width: 80%;  
 }
+
+.viewRoutine {
+    width: 250px;
+    height: 40px;
+    margin-top: 30px;
+    align-self: center;
+}
+
 /*********** ACTIVITIES *****************/
 
 .activities-container {
@@ -239,7 +247,3 @@ body{
     height: 50px;
     margin-top: 30px;
 }
-
-
-
-
