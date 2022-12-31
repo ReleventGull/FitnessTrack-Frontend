@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { getAllActivities, getAllRoutines, getUser } from './api/api';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Header, Register, Login, Activities, Routines, CreateActivity, SingleRoutine } from './components/index'
+import { Header, Register, Login, Activities, Routines, CreateActivity, CreateRoutine, SingleRoutine  } from './components/index'
 
 const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '');
@@ -34,6 +34,7 @@ useEffect(() => {
 useEffect(() => {
   const getAllUsers = async () => {
     const usersFromAPI = await getUser(token);
+    console.log(usersFromAPI)
     setUserData(usersFromAPI);
   }
   if (token) {
@@ -46,7 +47,7 @@ useEffect(() => {
     <Header setToken={setToken} token={token}/>
     
     <Route path='/activities/create'>
-      <CreateActivity setSubmit={setSubmit} token={token}/>
+    <CreateActivity setSubmit={setSubmit} token={token}/>
     </Route>
 
     <Route exact path='/activities'>
@@ -58,7 +59,7 @@ useEffect(() => {
     </Route>
     
     <Route path='/routines/create'>
-     <div>BRUH</div>
+     <CreateRoutine setSubmit={setSubmit} token={token}/>
     </Route>
     
     <Route exact path='/routines'>
@@ -72,10 +73,6 @@ useEffect(() => {
     <Route  path='/login'>
     <Login setToken={setToken}/>
     </Route>
-
-   
-
-
     </main>
     
   )

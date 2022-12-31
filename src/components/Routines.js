@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 
 
 const Routines = ({ routines, token }) => {
@@ -19,7 +19,6 @@ const Routines = ({ routines, token }) => {
         </div>
     </div>
     )
-
 }
 
 export default Routines;

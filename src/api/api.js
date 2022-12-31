@@ -73,12 +73,43 @@ export const getUser = async(token) => {
         })
         
         const result = await response.json()
-        console.log("results from users", result)
+        console.log("result from user", result)
         return result
     }catch(error) {
         console.error(error)
     }
 }
+
+export const getUserRoutines = async(token) => {
+    try {
+        const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/users/:username/routines`, {
+            method: "GET",
+            headers: {
+                'Content-type': 'Application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        const result = await response.json()
+        console.log("results from the users routines", result)
+        return result
+    }catch(error) {
+        console.error(error)
+    }
+}
+
+
+export const getRoutinesByActivityId = async(id) => {
+    try {
+        const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/activities/${id}/routines`)
+        const result = await response.json()
+        console.log("routines with activityId", result)
+        return result
+    }catch(error) {
+        console.error(error)
+    }
+}
+
 
 export const createActivity = async({token, name, description}) => {
 try {
@@ -102,7 +133,7 @@ return result
 }
 }
 
-const createRoutine = async({token, name, goal}) => {
+export const createRoutine = async({token, name, goal}) => {
     try{
         const response = await fetch(`${BASEURL}/routines`, {
             method: "POST",
