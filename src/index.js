@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { getAllActivities, getAllRoutines, getUser } from './api/api';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Header, Register, Login, Activities, Routines, CreateActivity, CreateRoutine } from './components/index'
+import { Header, Register, Login, Activities, Routines, CreateActivity, CreateRoutine, SingleRoutine  } from './components/index'
 
 const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '');
 const [activities, setActivities] = useState([]);
 const [routines, setRoutines] = useState([]);
 const [userData, setUserData] = useState([]);
-const [sumbit, setSubmit] = useState(false)
+const [submit, setSubmit] = useState(false)
 
 useEffect(() => {
   const getRoutines = async () => {
@@ -18,7 +18,7 @@ useEffect(() => {
     setSubmit(false)
   }
   getRoutines();
-}, [sumbit]);
+}, [submit]);
 
 
 useEffect(() => {
@@ -28,7 +28,7 @@ useEffect(() => {
     setSubmit(false)
   };
   getActivities();
-}, [sumbit]);
+}, [submit]);
 
 
 useEffect(() => {
@@ -54,7 +54,9 @@ useEffect(() => {
     <Activities token={token} activities={activities}/>
     </Route>
 
-    
+    <Route path='/routines/:id'>
+      <SingleRoutine routines={routines}/>
+    </Route>
     
     <Route path='/routines/create'>
      <CreateRoutine setSubmit={setSubmit} token={token}/>

@@ -145,6 +145,32 @@ body{
     border-bottom: 2px solid white;
     width: 80%;  
 }
+
+.viewRoutine {
+    width: 250px;
+    height: 40px;
+    margin-top: 30px;
+    align-self: center;
+}
+
+.singleRoutineOuter {
+    display: flex;
+    justify-content: center;
+}
+
+.singleRoutineInner {
+    width: 400px;
+    height: 400px;
+    background-color: black;
+    color: white;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
 /*********** ACTIVITIES *****************/
 
 .activities-container {
@@ -239,7 +265,3 @@ body{
     height: 50px;
     margin-top: 30px;
 }
-
-
-
-
