@@ -98,6 +98,19 @@ export const getUserRoutines = async(token) => {
     }
 }
 
+
+export const getRoutinesByActivityId = async(id) => {
+    try {
+        const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/activities/${id}/routines`)
+        const result = await response.json()
+        console.log("routines with activityId", result)
+        return result
+    }catch(error) {
+        console.error(error)
+    }
+}
+
+
 export const createActivity = async({token, name, description}) => {
 try {
   
