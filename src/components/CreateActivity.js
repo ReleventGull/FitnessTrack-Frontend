@@ -65,4 +65,4 @@ const CreateActivity = ({token, setSubmit}) => {
 
 
 
-export default CreateActivity
+export default CreateActivity;

@@ -133,7 +133,7 @@ return result
 }
 }
 
-const createRoutine = async({token, name, goal}) => {
+export const createRoutine = async({token, name, goal}) => {
     try{
         const response = await fetch(`${BASEURL}/routines`, {
             method: "POST",
