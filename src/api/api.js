@@ -62,7 +62,7 @@ export const getAllRoutines = async() => {
     }
 }
 
-const getUser = async(token) => {
+export const getUser = async(token) => {
     try {
         const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/users/me`, {
             method: "GET",

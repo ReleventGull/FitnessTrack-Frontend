@@ -34,6 +34,7 @@ useEffect(() => {
 useEffect(() => {
   const getAllUsers = async () => {
     const usersFromAPI = await getUser(token);
+    console.log(usersFromAPI)
     setUserData(usersFromAPI);
   }
   if (token) {
@@ -46,7 +47,7 @@ useEffect(() => {
     <Header setToken={setToken} token={token}/>
     
     <Route path='/activities/create'>
-      <CreateActivity setSubmit={setSubmit} token={token}/>
+    <CreateActivity setSubmit={setSubmit} token={token}/>
     </Route>
 
     <Route exact path='/activities'>
@@ -70,10 +71,6 @@ useEffect(() => {
     <Route  path='/login'>
     <Login setToken={setToken}/>
     </Route>
-
-   
-
-
     </main>
     
   )
