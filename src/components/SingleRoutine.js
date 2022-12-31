@@ -1,21 +1,34 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-
+import { useParams, useHistory } from 'react-router-dom';
+import {ActivityItem} from './index'
 
 const SingleRoutine = ({ routines }) => {
     const { id } = useParams();
-
-    const filteredRoutines = routines.filter((routine) => {
+    
+    const [filteredRoutines] = routines.filter((routine) => {
         const particularRoutine = routine.id == id
         return particularRoutine;
     })
-
+    console.log(filteredRoutines)
+    const history = useHistory()
     return (
         <div className='singleRoutineOuter'>
+            <button onClick={() => history.push('/routines')}className='singleRoutineBackButton'>Back</button>
             <div className='singleRoutineInner'>
-                <h1 className='routineHeader'>Routine: {filteredRoutines[0].name}</h1>
-                <h2 className='goal'>Goal: {filteredRoutines[0].goal}</h2>
+                <h1 className='routineHeader'>Routine: {filteredRoutines.name}</h1>
+                <h2 className='goal'>Goal: {filteredRoutines.goal}</h2>
             </div>
+            {filteredRoutines.activities.length > 0 ?
+            <div className="activities-container">
+                {filteredRoutines.activities.map(activity =>
+                    <div className="activities-container">
+                    <ActivityItem activity={activity}/>
+                    </div>
+                    )}
+            </div>        
+                :
+                <h2>There are no acitivites on this routine!</h2>
+                }
         </div>
     )
 }
