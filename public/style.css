@@ -265,3 +265,18 @@ body{
     height: 50px;
     margin-top: 30px;
 }
+
+
+
+/********************Display Routine Activities**********************/
+.singleRoutineOuter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.singleRoutineBackButton {
+    margin-top: 20px;
+    width: 80px;
+    height: 40px;
+}
