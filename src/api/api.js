@@ -143,7 +143,8 @@ export const createRoutine = async({token, name, goal}) => {
             },
             body: JSON.stringify({
                 name: name,
-                goal: goal
+                goal: goal,
+                isPublic: true
             })
         })
         const result = await response.json()

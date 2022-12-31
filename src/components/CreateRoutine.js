@@ -5,7 +5,8 @@ import {createRoutine} from "../api/api"
 const CreateRoutine = ({token, setSubmit}) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [errorMessage, setErrorMessage] = useSate('');
+    const [errorMessage, setErrorMessage] = useState('');
+    
     const history = useHistory()
 
     useEffect(() => {
@@ -17,11 +18,12 @@ const CreateRoutine = ({token, setSubmit}) => {
         const result = await createRoutine({
             token: token,
             name: name,
-            description: description})
+            goal: description})
         if(result.error) {
             setErrorMessage(result.message)
             console.log(errorMessage)
         }else{
+            console.log(result)
             setSubmit(true)
             setErrorMessage('')
             history.push('/routines')
@@ -39,7 +41,7 @@ const CreateRoutine = ({token, setSubmit}) => {
             required
             ></input>
 
-                <h3>Description</h3>
+                <h3>Goal</h3>
                 <textarea 
                 value={description}
                 onChange={(event) =>
