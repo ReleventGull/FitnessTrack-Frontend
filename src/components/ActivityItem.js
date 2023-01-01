@@ -9,6 +9,7 @@ const ActivityItem = ({children, activity}) => {
                     <p>{activity.name}</p>
                     <h2>Description</h2>
                     <p>{activity.description}</p>
+                    {children}
             </div>
         );
 }

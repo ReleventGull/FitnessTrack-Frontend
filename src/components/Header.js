@@ -26,7 +26,7 @@ const Header =  ({setToken, token}) => {
     <Link to='/register'>Register</Link> 
     </>
     :<>
-    <Link>MyRoutines</Link>
+    <Link to='/myRoutines'>MyRoutines</Link>
     <button onClick={handleLogout} className="logoutButton">Logout</button>
     </>
     }

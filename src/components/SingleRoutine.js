@@ -13,7 +13,6 @@ const SingleRoutine = ({ routines }) => {
     const history = useHistory()
     return (
         <div className='singleRoutineOuter'>
-            <button onClick={() => history.push('/routines')}className='singleRoutineBackButton'>Back</button>
             <div className='singleRoutineInner'>
                 <h1 className='routineHeader'>Routine: {filteredRoutines.name}</h1>
                 <h2 className='goal'>Goal: {filteredRoutines.goal}</h2>
@@ -22,7 +21,10 @@ const SingleRoutine = ({ routines }) => {
             <div className="activities-container">
                 {filteredRoutines.activities.map(activity =>
                     <div className="activities-container">
-                    <ActivityItem activity={activity}/>
+                    <ActivityItem activity={activity}>
+                    <p>Count: {activity.count}</p>
+                    <p>Duration: {activity.duration}</p>
+                    </ActivityItem>
                     </div>
                     )}
             </div>        

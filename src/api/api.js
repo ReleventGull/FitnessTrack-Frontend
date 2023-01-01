@@ -80,15 +80,9 @@ export const getUser = async(token) => {
     }
 }
 
-export const getUserRoutines = async(token) => {
+export const getUserRoutines = async({token, username}) => {
     try {
-        const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/users/:username/routines`, {
-            method: "GET",
-            headers: {
-                'Content-type': 'Application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        })
+        const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/users/${username}/routines`)
 
         const result = await response.json()
         console.log("results from the users routines", result)
