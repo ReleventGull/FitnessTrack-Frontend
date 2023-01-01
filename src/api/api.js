@@ -148,7 +148,7 @@ export const createRoutine = async({token, name, goal}) => {
     }
 }
 
-export const attachActivityToRoutine = async({activityId, count, duration, token}) => {
+export const attachActivityToRoutine = async({id, activityId, count, duration, token}) => {
     try{
         const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/routines/${id}/activities`, {
             method: "POST",

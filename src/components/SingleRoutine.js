@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import {attachActivityToRoutine} from '../api/api'
 import {ActivityItem} from './index'
 
-const SingleRoutine = ({ routines, token, user, activities}) => {
+const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
     const [count, setCount] = useState('')
     const [duration, setDuration] = useState('')
     const [selectedActivity, setselectedActivity] = useState('')
@@ -13,11 +14,21 @@ const SingleRoutine = ({ routines, token, user, activities}) => {
         return particularRoutine;
     })
 
-const handleSubmit = (event) => {
+const handleSubmit = async(event) => {
      event.preventDefault()
      console.log('Duration',duration)
      console.log('Counter', count)
      console.log('Id', selectedActivity)
+
+     const result =await attachActivityToRoutine({
+        id: id,
+        activityId: selectedActivity,
+        count: count,
+        duration: duration,
+        token: token
+     })
+     setSubmit(true)
+     console.log(result)
      setselectedActivity('none')
 }
     return (
