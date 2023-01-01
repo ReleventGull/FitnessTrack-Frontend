@@ -1,19 +1,46 @@
-import React from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {ActivityItem} from './index'
 
-const SingleRoutine = ({ routines }) => {
+const SingleRoutine = ({ routines, token, user, activities}) => {
+    const [count, setCount] = useState('')
+    const [duration, setDuration] = useState('')
+    const [selectedActivity, setselectedActivity] = useState('')
     const { id } = useParams();
-    
+
     const [filteredRoutines] = routines.filter((routine) => {
         const particularRoutine = routine.id == id
         return particularRoutine;
     })
-    console.log(filteredRoutines)
-    const history = useHistory()
+
+const handleSubmit = (event) => {
+     event.preventDefault()
+     console.log('Duration',duration)
+     console.log('Counter', count)
+     console.log('Id', selectedActivity)
+     setselectedActivity('none')
+}
     return (
         <div className='singleRoutineOuter'>
-            <button onClick={() => history.push('/routines')}className='singleRoutineBackButton'>Back</button>
+            {user ? user.id === filteredRoutines.creatorId ? 
+            
+            <form onSubmit={handleSubmit}>
+            <select onChange={(event) => setselectedActivity(event.target.value)} placeholder='Add Activity to Routine'>
+                <option value='none'>none</option>
+            {activities.map(activity =>
+                <option value={activity.id}>{activity.name}</option>
+                )}
+                
+            </select>
+                    <input value={count} type='number' onChange={(event) => setCount(event.target.value)} placeholder='count'></input>
+                    <input value={duration} type='number'onChange={(event) => setDuration(event.target.value)}  placeholder='duration'></input>
+                <button type="Submit">Submit!</button>
+            </form>
+            
+            : null: null
+            }
+           
+            
             <div className='singleRoutineInner'>
                 <h1 className='routineHeader'>Routine: {filteredRoutines.name}</h1>
                 <h2 className='goal'>Goal: {filteredRoutines.goal}</h2>
@@ -22,7 +49,10 @@ const SingleRoutine = ({ routines }) => {
             <div className="activities-container">
                 {filteredRoutines.activities.map(activity =>
                     <div className="activities-container">
-                    <ActivityItem activity={activity}/>
+                    <ActivityItem activity={activity}>
+                    <p>Count: {activity.count}</p>
+                    <p>Duration: {activity.duration}</p>
+                    </ActivityItem>
                     </div>
                     )}
             </div>        

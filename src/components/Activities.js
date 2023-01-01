@@ -10,7 +10,6 @@ const Activities = ({ activities, token }) => {
         {activities.map(activity =>
             <ActivityItem 
             activity={activity}>
-            <div>Bruh</div>    
             </ActivityItem>
             )}
         </div>
