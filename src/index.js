@@ -42,7 +42,7 @@ useEffect(() => {
   if (token) {
     getAllUsers()
   } else {null}
-}, [token])
+}, [token, submit])
 
   return (
     <main>
@@ -61,7 +61,7 @@ useEffect(() => {
     </Route>
     
     <Route path='/routines/:id'>
-      <SingleRoutine activities={activities} user={user} token={token} routines={routines}/>
+      <SingleRoutine setSubmit={setSubmit} activities={activities} user={user} token={token} routines={routines}/>
     </Route>
     
     <Route path='/createRoutine'>
