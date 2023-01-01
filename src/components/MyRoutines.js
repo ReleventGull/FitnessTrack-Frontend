@@ -1,10 +1,10 @@
 import React from "react";
 import {Link} from 'react-router-dom'
-const MyRoutines = ({userData}) => {
+const MyRoutines = ({useRoutines}) => {
     return (
         <div className='routinesPage'>
         <div className='routinesContainer'>
-            {userData.map((routine) => {
+            {useRoutines.map((routine) => {
                 return(
                     <div key={routine.id} className='routineCard'>
                             <h2 className='routineHeader'>{routine.creatorName}'s routine: {routine.name}</h2>

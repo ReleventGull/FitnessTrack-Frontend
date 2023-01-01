@@ -8,7 +8,8 @@ const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '');
 const [activities, setActivities] = useState([]);
 const [routines, setRoutines] = useState([]);
-const [userData, setUserData] = useState([]);
+const [user, setUser ] = useState([])
+const [useRoutines, setUseRoutines] = useState([]);
 const [submit, setSubmit] = useState(false)
 
 useEffect(() => {
@@ -35,7 +36,8 @@ useEffect(() => {
   const getAllUsers = async () => {
     const usersFromAPI = await getUser(token);
     const userRoutines = await getUserRoutines({token: token, username: usersFromAPI.username})
-    setUserData(userRoutines);
+    setUser(usersFromAPI)
+    setUseRoutines(userRoutines);
   }
   if (token) {
     getAllUsers()
@@ -55,11 +57,11 @@ useEffect(() => {
     </Route>
 
     <Route exact path = '/myRoutines'>
-    <MyRoutines userData={userData}/>
+    <MyRoutines useRoutines={useRoutines}/>
     </Route>
     
     <Route path='/routines/:id'>
-      <SingleRoutine routines={routines}/>
+      <SingleRoutine activities={activities} user={user} token={token} routines={routines}/>
     </Route>
     
     <Route path='/createRoutine'>
@@ -70,7 +72,7 @@ useEffect(() => {
     <Routines token={token} routines={routines}/>
     </Route>
      
-    <Route  path='/register'>
+    <Route path='/register'>
     <Register setToken={setToken}/>
     </Route>
 
