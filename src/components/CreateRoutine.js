@@ -30,14 +30,14 @@ const CreateRoutine = ({token, setSubmit}) => {
         }
     }
     return (
-        <div className="createRoutineContainer">
-        <form onSubmit={handleSubmit} className="formCreateRoutine">
+        <div className="createActivityContainer">
+        <form onSubmit={handleSubmit} className="formCreateActivity">
             <h2>Create a Routine!</h2>
             <input
             value={name}
             onChange={(event) =>
             setName(event.target.value)}
-            className="nameRoutine"
+            className="nameActivity"
             required
             ></input>
 
@@ -46,11 +46,11 @@ const CreateRoutine = ({token, setSubmit}) => {
                 value={description}
                 onChange={(event) =>
                 setDescription(event.target.value)}
-                className="descriptionRoutine"
+                className="descriptionActivity"
                 required
                 ></textarea>
 
-                <button type="submit" className="submitRoutine"> Submit Routine</button>
+                <button type="submit" className="submitActivity"> Submit Routine</button>
             </form>
             <h2>{errorMessage}</h2>
         </div>
