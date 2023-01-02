@@ -208,3 +208,25 @@ export const deleteActivityFromRoutine = async({token, id}) => {
     }
 }
 
+export const updateRoutine = async({id, token, name, goal}) => {
+    try {
+        const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/routines/${id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-type': 'Application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name: name,
+                goal: goal,
+                isPublic: true
+            })
+        })
+        const result = await response.json()
+        console.log("Updated result", result)
+        return result
+    }catch(error) {
+        console.error(error)
+    }
+}
+
