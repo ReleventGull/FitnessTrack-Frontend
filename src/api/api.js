@@ -171,7 +171,7 @@ export const attachActivityToRoutine = async({id, activityId, count, duration, t
 
 
 
-export const deleteUserRoutine = async(token) => {
+export const deleteUserRoutine = async({token, id}) => {
     try {
         const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/routines/${id}`, {
             method: "DELETE",
