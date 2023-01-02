@@ -13,6 +13,7 @@ const [useRoutines, setUseRoutines] = useState([]);
 const [submit, setSubmit] = useState(false)
 
 useEffect(() => {
+  console.log("I RAN BRO")
   const getRoutines = async () => {
     const routinesFromAPI = await getAllRoutines();
     setRoutines(routinesFromAPI);

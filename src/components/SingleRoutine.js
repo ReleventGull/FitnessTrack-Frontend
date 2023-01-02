@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {attachActivityToRoutine} from '../api/api'
+import {attachActivityToRoutine, deleteActivityFromRoutine} from '../api/api'
 import {ActivityItem} from './index'
 
 const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
@@ -14,12 +14,13 @@ const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
         return particularRoutine;
     })
 
+    const removeActivity = async(activity) => {
+    const deletedActivity = await deleteActivityFromRoutine({token: token, id: activity.routineActivityId})
+    setSubmit(true)
+    }
+
 const handleSubmit = async(event) => {
      event.preventDefault()
-     console.log('Duration',duration)
-     console.log('Counter', count)
-     console.log('Id', selectedActivity)
-
      const result =await attachActivityToRoutine({
         id: id,
         activityId: selectedActivity,
@@ -28,14 +29,13 @@ const handleSubmit = async(event) => {
         token: token
      })
      setSubmit(true)
-     console.log(result)
-     setselectedActivity('none')
 }
     return (
         <div className='singleRoutineOuter'>
             {user ? user.id === filteredRoutines.creatorId ? 
             
             <form onSubmit={handleSubmit}>
+                <h2>Add Activity To Routine</h2>
             <select onChange={(event) => setselectedActivity(event.target.value)} placeholder='Add Activity to Routine'>
                 <option value='none'>none</option>
             {activities.map(activity =>
@@ -63,6 +63,7 @@ const handleSubmit = async(event) => {
                     <ActivityItem activity={activity}>
                     <p>Count: {activity.count}</p>
                     <p>Duration: {activity.duration}</p>
+                    {user ? user.id === filteredRoutines.creatorId ? <button onClick={(event) => removeActivity(activity)} className='removeActivity'>Remove Activity</button>: null: null}
                     </ActivityItem>
                     </div>
                     )}
