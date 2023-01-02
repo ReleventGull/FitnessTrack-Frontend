@@ -190,3 +190,21 @@ export const deleteUserRoutine = async({token, id}) => {
     
 }
 
+export const deleteActivityFromRoutine = async({token, id}) => {
+    try {
+        const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/routine_activities/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-type': 'Application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        const result = await response.json()
+        console.log("Deleted Activity", result)
+        return result
+    }catch(error) {
+        console.error(error)
+    }
+}
+
