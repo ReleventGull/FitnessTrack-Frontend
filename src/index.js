@@ -57,11 +57,11 @@ useEffect(() => {
     </Route>
 
     <Route exact path = '/myRoutines'>
-    <MyRoutines useRoutines={useRoutines}/>
+    <MyRoutines token={token} setSubmit={setSubmit} useRoutines={useRoutines}/>
     </Route>
     
     <Route path='/routines/:id'>
-      <SingleRoutine setSubmit={setSubmit} activities={activities} user={user} token={token} routines={routines}/>
+      <SingleRoutine setSubmit={setSubmit}activities={activities} user={user} token={token} routines={routines}/>
     </Route>
     
     <Route path='/createRoutine'>
