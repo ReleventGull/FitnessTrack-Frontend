@@ -53,10 +53,7 @@ const handleSubmit = async(event) => {
 
 
     const filteredRoutines = routines.find(routine => routine.id == id)
-    for(let i = 0; i < filteredRoutines.activities; i++) {
-        
-    }
-
+  
 
 
     return (
