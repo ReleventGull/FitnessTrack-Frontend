@@ -322,3 +322,16 @@ body{
     flex-direction: column;
     justify-content: space-around;
 }
+
+.updateActivityButton {
+    height: 30px;
+    margin-bottom: 22px;
+    align-self: flex-end;
+}
+.updateActivtyForm {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    justify-content: space-around;
+
+}
