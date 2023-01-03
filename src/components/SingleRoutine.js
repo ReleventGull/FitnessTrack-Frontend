@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {attachActivityToRoutine, deleteActivityFromRoutine, updateRoutine} from '../api/api'
 import {ActivityItem} from './index'
@@ -12,21 +12,20 @@ const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
     const [addAcitivtyerror, setAddActivityError] = useState('')
     const [updateName, setupdateName] = useState('')
     const [updateGoal, setUpdateGoal] = useState('')
-
     const { id } = useParams();
+    
+    
+    
+    
+      
 
-    const [filteredRoutines] = routines.filter((routine) => {
-        const particularRoutine = routine.id == id
-        
-        return particularRoutine;
-    })
-    console.log(filteredRoutines)
-const updateCurrentRoutine = async(event) => {
+    const updateCurrentRoutine = async(event) => {
 event.preventDefault()
 const updatedRoutined = updateRoutine({token: token, name:updateName, goal:updateGoal, id:id})
 console.log(updatedRoutined)
 setSubmit(true)
 }
+
 const removeActivity = async(activity) => {
     const deletedActivity = await deleteActivityFromRoutine({token: token, id: activity.routineActivityId})
     setSubmit(true)
@@ -50,9 +49,14 @@ const handleSubmit = async(event) => {
      }
      
 }
+
+const filteredRoutines = routines.find(routine => routine.id == id)
     return (
        
+        
+        !filteredRoutines ? <div>Loading</div> :
         <div className='singleRoutineOuter'>
+          
             {user ? user.id === filteredRoutines.creatorId ? 
             
             <form onSubmit={handleSubmit}>
@@ -114,6 +118,8 @@ const handleSubmit = async(event) => {
                 <h2>There are no acitivites on this routine!</h2>
                 }
         </div>
+            
+    
     )
 }
 
