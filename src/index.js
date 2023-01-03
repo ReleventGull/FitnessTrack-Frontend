@@ -12,9 +12,9 @@ const [user, setUser ] = useState([])
 const [useRoutines, setUseRoutines] = useState([]);
 const [submit, setSubmit] = useState(false)
 const { id } = useParams();
-console.log("ID IN INDEX", id)
+
+
 useEffect(() => {
-  console.log("I RAN BRO")
   const getRoutines = async () => {
     const routinesFromAPI = await getAllRoutines();
     setRoutines(routinesFromAPI);

@@ -12,7 +12,7 @@ const Routines = ({ routines, token }) => {
                     <div key={routine.id} className='routineCard'>
                             <h2 className='routineHeader'>{routine.creatorName}'s routine: {routine.name}</h2>
                             <h3 className='goal'>{routine.goal}</h3>
-                            <Link to={`/routines/${routine.id}`} className="viewRoutine">View Routine</Link>
+                            <Link to={`routines/${routine.id}`} className="viewRoutine">View Routine</Link>
                     </div>
                 )
             })}

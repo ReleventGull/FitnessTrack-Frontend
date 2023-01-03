@@ -12,6 +12,7 @@ const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
     const [addAcitivtyerror, setAddActivityError] = useState('')
     const [updateName, setupdateName] = useState('')
     const [updateGoal, setUpdateGoal] = useState('')
+
     const { id } = useParams();
     
     
@@ -22,7 +23,7 @@ const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
     const updateCurrentRoutine = async(event) => {
 event.preventDefault()
 const updatedRoutined = updateRoutine({token: token, name:updateName, goal:updateGoal, id:id})
-console.log(updatedRoutined)
+console.log('in state', updatedRoutined)
 setSubmit(true)
 }
 
@@ -50,7 +51,14 @@ const handleSubmit = async(event) => {
      
 }
 
-const filteredRoutines = routines.find(routine => routine.id == id)
+
+    const filteredRoutines = routines.find(routine => routine.id == id)
+    for(let i = 0; i < filteredRoutines.activities; i++) {
+        
+    }
+
+
+
     return (
        
         
