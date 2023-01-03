@@ -9,7 +9,7 @@ const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
     const [duration, setDuration] = useState('')
     const [selectedActivity, setselectedActivity] = useState('')
     const [userEditing, setUserEditing] = useState(false)
-    
+    const [addAcitivtyerror, setAddActivityError] = useState('')
     const [updateName, setupdateName] = useState('')
     const [updateGoal, setUpdateGoal] = useState('')
     
@@ -40,9 +40,17 @@ const handleSubmit = async(event) => {
         duration: duration,
         token: token
      })
-     setSubmit(true)
+     if(result.error) {
+        console.log(result)
+        setAddActivityError('That activity is already added!')
+     }else {
+        setAddActivityError('')
+        setSubmit(true)
+     }
+     
 }
     return (
+       
         <div className='singleRoutineOuter'>
             {user ? user.id === filteredRoutines.creatorId ? 
             
@@ -63,7 +71,7 @@ const handleSubmit = async(event) => {
             : null: null
             }
            
-            
+           <h2>{addAcitivtyerror}</h2>
             <div className='singleRoutineInner'>
                 <h1 className='routineHeader'>Routine: {filteredRoutines.name}</h1>
                 <h2 className='goal'>Goal: {filteredRoutines.goal}</h2>

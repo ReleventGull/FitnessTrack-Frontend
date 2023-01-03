@@ -4,7 +4,7 @@ import {deleteUserRoutine} from '../api/api'
 const MyRoutines = ({useRoutines, setSubmit, token}) => {
 
 
-
+    
     const handleSubmit = async(id) => {
         console.log(id)
         const deleteRoutine = await deleteUserRoutine({token:token, id:id})
@@ -12,7 +12,8 @@ const MyRoutines = ({useRoutines, setSubmit, token}) => {
     }
     return (
         <div className='routinesPage'>
-        <div className='routinesContainer'>
+            {useRoutines.length > 0 ?
+            <div className='routinesContainer'>
             {useRoutines.map((routine) => {
                 return(
                     <div value={routine.id} key={routine.id} className='routineCard'>
@@ -23,7 +24,9 @@ const MyRoutines = ({useRoutines, setSubmit, token}) => {
                     </div>
                 )
             })}
-        </div>
+        </div>:
+        <h2>You have no routines!</h2>
+        }
     </div>
     );
 }
