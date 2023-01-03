@@ -27,7 +27,7 @@ setPassword2('')
    if(!result.error) {
       setToken(result.token)
       localStorage.setItem('token', result.token)
-      history.push('/activities')
+      history.push('/')
    }else {
       setErrorMessage(result.message)
    }
