@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Home = () => {
+const Home = ({token, user}) => {
     return (
         <div>
-            <h1>Home</h1>
+            <h1>{token? `Welcome ${user.username}!` : 'You need to login!'}</h1>
         </div>
     )
 }
