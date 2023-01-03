@@ -232,7 +232,8 @@ export const updateRoutine = async({id, token, name, goal}) => {
 
 export const updateRoutineActivities = async({id, token, count, duration}) => {
     try {
-        const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/api/routine_activities/${id}`, {
+        console.log(id, count, token, duration )
+        const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/routine_activities/${id}`, {
             method: "PATCH",
             headers: {
                 'Content-type': 'Application/json',
@@ -248,6 +249,7 @@ export const updateRoutineActivities = async({id, token, count, duration}) => {
         return result
     }catch(error) {
         console.error(error)
+        
     }
 }
 

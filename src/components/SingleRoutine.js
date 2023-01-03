@@ -12,14 +12,15 @@ const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
     const [addAcitivtyerror, setAddActivityError] = useState('')
     const [updateName, setupdateName] = useState('')
     const [updateGoal, setUpdateGoal] = useState('')
-    
+
     const { id } = useParams();
 
     const [filteredRoutines] = routines.filter((routine) => {
         const particularRoutine = routine.id == id
+        
         return particularRoutine;
     })
-
+    console.log(filteredRoutines)
 const updateCurrentRoutine = async(event) => {
 event.preventDefault()
 const updatedRoutined = updateRoutine({token: token, name:updateName, goal:updateGoal, id:id})
@@ -93,14 +94,22 @@ const handleSubmit = async(event) => {
             <div className="activities-container">
                 {filteredRoutines.activities.map(activity =>
                     <div className="activities-container">
-                    <ActivityItem activity={activity}>
+                    <ActivityItem 
+                    activity={activity}
+                    left={user ? user.id === filteredRoutines.creatorId ?  <button onClick={(event) => removeActivity(activity)} className='removeActivity'>Remove Activity</button>: null: null}
+                    user={user}
+                    filteredRoutines={filteredRoutines}
+                    setSubmit={setSubmit}
+                    token={token}
+                    >
                     <p>Count: {activity.count}</p>
                     <p>Duration: {activity.duration}</p>
-                    {user ? user.id === filteredRoutines.creatorId ? <button onClick={(event) => removeActivity(activity)} className='removeActivity'>Remove Activity</button>: null: null}
+                    
+                  
                     </ActivityItem>
                     </div>
                     )}
-            </div>        
+                </div>
                 :
                 <h2>There are no acitivites on this routine!</h2>
                 }
