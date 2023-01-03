@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {attachActivityToRoutine} from '../api/api'
+import {attachActivityToRoutine, deleteActivityFromRoutine, updateRoutine} from '../api/api'
 import {ActivityItem} from './index'
+
 
 const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
     const [count, setCount] = useState('')
     const [duration, setDuration] = useState('')
     const [selectedActivity, setselectedActivity] = useState('')
+    const [userEditing, setUserEditing] = useState(false)
+    const [addAcitivtyerror, setAddActivityError] = useState('')
+    const [updateName, setupdateName] = useState('')
+    const [updateGoal, setUpdateGoal] = useState('')
+    
     const { id } = useParams();
 
     const [filteredRoutines] = routines.filter((routine) => {
@@ -14,12 +20,19 @@ const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
         return particularRoutine;
     })
 
+const updateCurrentRoutine = async(event) => {
+event.preventDefault()
+const updatedRoutined = updateRoutine({token: token, name:updateName, goal:updateGoal, id:id})
+console.log(updatedRoutined)
+setSubmit(true)
+}
+const removeActivity = async(activity) => {
+    const deletedActivity = await deleteActivityFromRoutine({token: token, id: activity.routineActivityId})
+    setSubmit(true)
+    }
+
 const handleSubmit = async(event) => {
      event.preventDefault()
-     console.log('Duration',duration)
-     console.log('Counter', count)
-     console.log('Id', selectedActivity)
-
      const result =await attachActivityToRoutine({
         id: id,
         activityId: selectedActivity,
@@ -27,15 +40,22 @@ const handleSubmit = async(event) => {
         duration: duration,
         token: token
      })
-     setSubmit(true)
-     console.log(result)
-     setselectedActivity('none')
+     if(result.error) {
+        console.log(result)
+        setAddActivityError('That activity is already added!')
+     }else {
+        setAddActivityError('')
+        setSubmit(true)
+     }
+     
 }
     return (
+       
         <div className='singleRoutineOuter'>
             {user ? user.id === filteredRoutines.creatorId ? 
             
             <form onSubmit={handleSubmit}>
+                <h2>Add Activity To Routine</h2>
             <select onChange={(event) => setselectedActivity(event.target.value)} placeholder='Add Activity to Routine'>
                 <option value='none'>none</option>
             {activities.map(activity =>
@@ -51,11 +71,24 @@ const handleSubmit = async(event) => {
             : null: null
             }
            
-            
+           <h2>{addAcitivtyerror}</h2>
             <div className='singleRoutineInner'>
                 <h1 className='routineHeader'>Routine: {filteredRoutines.name}</h1>
                 <h2 className='goal'>Goal: {filteredRoutines.goal}</h2>
             </div>
+           {user ? user.id === filteredRoutines.creatorId ? userEditing ? 
+        <form onSubmit={updateCurrentRoutine} className='updateRoutine'>
+        <p>Name</p>   
+        <input onChange={(event) => setupdateName(event.target.value)} value={updateName}></input>
+        <p>Goal</p>   
+        <input onChange={(event) => setUpdateGoal(event.target.value)} value={updateGoal}></input>
+        <button>Update!</button>
+        <button onClick={() => setUserEditing(false)}>Cancel</button>
+          </form>
+          : 
+          <button onClick={() => setUserEditing(true)}>Update Routine</button>: null: null}
+            
+            
             {filteredRoutines.activities.length > 0 ?
             <div className="activities-container">
                 {filteredRoutines.activities.map(activity =>
@@ -63,6 +96,7 @@ const handleSubmit = async(event) => {
                     <ActivityItem activity={activity}>
                     <p>Count: {activity.count}</p>
                     <p>Duration: {activity.duration}</p>
+                    {user ? user.id === filteredRoutines.creatorId ? <button onClick={(event) => removeActivity(activity)} className='removeActivity'>Remove Activity</button>: null: null}
                     </ActivityItem>
                     </div>
                     )}
