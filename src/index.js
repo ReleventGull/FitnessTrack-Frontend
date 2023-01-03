@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect  } from 'react';
 import ReactDOM from 'react-dom/client';
-import { getAllActivities, getAllRoutines, getUser, getUserRoutines } from './api/api';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Header, Register, Login, Activities, Routines, CreateActivity, CreateRoutine, SingleRoutine, MyRoutines  } from './components/index'
+import { getAllActivities, getAllRoutines, getUser, getUserRoutines, } from './api/api';
+import { BrowserRouter as Router, Route, useParams} from "react-router-dom";
+import { Header, Register, Login, Activities, Routines, CreateActivity, CreateRoutine, SingleRoutine, MyRoutines, } from './components/index'
 
 const App = () => {
 const [token, setToken]= useState(localStorage.getItem('token') || '');
@@ -11,7 +11,8 @@ const [routines, setRoutines] = useState([]);
 const [user, setUser ] = useState([])
 const [useRoutines, setUseRoutines] = useState([]);
 const [submit, setSubmit] = useState(false)
-
+const { id } = useParams();
+console.log("ID IN INDEX", id)
 useEffect(() => {
   console.log("I RAN BRO")
   const getRoutines = async () => {
@@ -80,6 +81,7 @@ useEffect(() => {
     <Route  path='/login'>
     <Login setToken={setToken}/>
     </Route>
+
     </main>
     
   )
