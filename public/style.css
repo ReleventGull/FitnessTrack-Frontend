@@ -316,3 +316,9 @@ body{
 .removeActivity:hover {
  color: orange;
 }
+
+.updateRoutine {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}

@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {attachActivityToRoutine, deleteActivityFromRoutine} from '../api/api'
+import {attachActivityToRoutine, deleteActivityFromRoutine, updateRoutine} from '../api/api'
 import {ActivityItem} from './index'
+
 
 const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
     const [count, setCount] = useState('')
     const [duration, setDuration] = useState('')
     const [selectedActivity, setselectedActivity] = useState('')
+    const [userEditing, setUserEditing] = useState(false)
+    
+    const [updateName, setupdateName] = useState('')
+    const [updateGoal, setUpdateGoal] = useState('')
+    
     const { id } = useParams();
 
     const [filteredRoutines] = routines.filter((routine) => {
@@ -14,7 +20,13 @@ const SingleRoutine = ({ routines, token, user, activities, setSubmit}) => {
         return particularRoutine;
     })
 
-    const removeActivity = async(activity) => {
+const updateCurrentRoutine = async(event) => {
+event.preventDefault()
+const updatedRoutined = updateRoutine({token: token, name:updateName, goal:updateGoal, id:id})
+console.log(updatedRoutined)
+setSubmit(true)
+}
+const removeActivity = async(activity) => {
     const deletedActivity = await deleteActivityFromRoutine({token: token, id: activity.routineActivityId})
     setSubmit(true)
     }
@@ -56,6 +68,19 @@ const handleSubmit = async(event) => {
                 <h1 className='routineHeader'>Routine: {filteredRoutines.name}</h1>
                 <h2 className='goal'>Goal: {filteredRoutines.goal}</h2>
             </div>
+           {user ? user.id === filteredRoutines.creatorId ? userEditing ? 
+        <form onSubmit={updateCurrentRoutine} className='updateRoutine'>
+        <p>Name</p>   
+        <input onChange={(event) => setupdateName(event.target.value)} value={updateName}></input>
+        <p>Goal</p>   
+        <input onChange={(event) => setUpdateGoal(event.target.value)} value={updateGoal}></input>
+        <button>Update!</button>
+        <button onClick={() => setUserEditing(false)}>Cancel</button>
+          </form>
+          : 
+          <button onClick={() => setUserEditing(true)}>Update Routine</button>: null: null}
+            
+            
             {filteredRoutines.activities.length > 0 ?
             <div className="activities-container">
                 {filteredRoutines.activities.map(activity =>
